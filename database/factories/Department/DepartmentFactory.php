@@ -20,7 +20,7 @@ class DepartmentFactory extends Factory
     {
         $branch = Branch::first();
         return [
-            "branch_id" => $branch
+            "branch_id" => $branch->id
         ];
     }
 }

@@ -7,12 +7,16 @@ use Illuminate\Database\Seeder;
 
 // *** Seeder
 use Database\Seeders\Branch\BranchSeeder,
+    Database\Seeders\Curriculum\CurriculumSeeder,
+    Database\Seeders\CurriculumSubject\InformationTechnologyCurriculumSubjectSeeder,
     Database\Seeders\Department\DepartmentSeeder,
     Database\Seeders\Employee\EmployeeSeeder,
     Database\Seeders\Program\ProgramSeeder,
     Database\Seeders\Section\SectionSeeder,
+    Database\Seeders\Section\SectionSubjectSeeder,
     Database\Seeders\Student\StudentSeeder,
-    Database\Seeders\Subject\SubjectSeeder;
+    Database\Seeders\Subject\InformationTechnologySubjectSeeder,
+    Database\Seeders\Subject\GeneralEducationSubjectSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,7 +32,11 @@ class DatabaseSeeder extends Seeder
             ProgramSeeder::class,
             SectionSeeder::class,
             StudentSeeder::class,
-            SubjectSeeder::class
+            InformationTechnologySubjectSeeder::class,
+            GeneralEducationSubjectSeeder::class,
+            CurriculumSeeder::class,
+            SectionSubjectSeeder::class,
+            InformationTechnologyCurriculumSubjectSeeder::class
         ]);
         
 

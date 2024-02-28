@@ -47,12 +47,4 @@ class Student extends Model
         return $this->belongsTo(Branch::class, 'branch_id');
     }
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->{$model->getKeyName()} = (string) Str::uuid();
-        });
-    }
 }

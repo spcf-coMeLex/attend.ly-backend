@@ -41,13 +41,5 @@ class Subject extends Model
     protected function department() {
         return $this->belongsTo(Department::class, 'department_id');
     }
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->{$model->getKeyName()} = (string) Str::uuid();
-        });
-    }
+    
 }

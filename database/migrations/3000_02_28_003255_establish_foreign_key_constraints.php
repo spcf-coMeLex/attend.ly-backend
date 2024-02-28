@@ -22,9 +22,9 @@ return new class extends Migration
         /*****************************************  SECTION  *****************************************/
         Schema::table('sections', function (Blueprint $table)
         {
+            $table->foreign('program_id')->references('id')->on('programs');
             $table->foreign('department_id')->references('id')->on('departments');
             $table->foreign('branch_id')->references('id')->on('branches');
-            $table->foreign('program_id')->references('id')->on('programs');
         });
 
 
@@ -39,6 +39,7 @@ return new class extends Migration
         /*****************************************  STUDENT  *****************************************/
         Schema::table('students', function (Blueprint $table)
         {
+            $table->foreign('program_id')->references('id')->on('programs');
             $table->foreign('department_id')->references('id')->on('departments');
             $table->foreign('branch_id')->references('id')->on('branches');
         });
@@ -57,6 +58,21 @@ return new class extends Migration
         Schema::table('departments', function (Blueprint $table)
         {
             $table->foreign('branch_id')->references('id')->on('branches');
+        });
+
+
+        /*****************************************  CURRICULUM  *****************************************/
+        Schema::table('curriculums', function (Blueprint $table)
+        {
+            $table->foreign('branch_id')->references('id')->on('branches');
+            $table->foreign('department_id')->references('id')->on('departments');
+            $table->foreign('program_id')->references('id')->on('programs');
+        });
+
+        Schema::table('curriculum_subjects', function (Blueprint $table)
+        {
+            $table->foreign('curriculum_id')->references('id')->on('curriculums')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('subject_id')->references('id')->on('subjects');
         });
 
     }
