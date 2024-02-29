@@ -75,6 +75,13 @@ return new class extends Migration
             $table->foreign('subject_id')->references('id')->on('subjects');
         });
 
+        /*****************************************  ACTIVITY LOG  *****************************************/
+        Schema::table('activity_logs', function (Blueprint $table)
+        {
+            $table->foreign('employee_id')->references('id')->on('employees');
+            $table->foreign('student_id')->references('id')->on('students');
+        });
+
     }
 
     /**
