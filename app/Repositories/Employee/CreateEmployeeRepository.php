@@ -18,7 +18,7 @@ class CreateEmployeeRepository extends BaseRepository
             $department = Department::where('code', $request->departmentCode)->first();
 
             Employee::create([
-                "principal_id"      => $request->principalId,
+                "uId"               => $request->uId,
                 "first_name"        => $request->firstName,
                 "middle_name"       => $request->middleName,
                 "last_name"         => $request->lastName,
@@ -39,6 +39,6 @@ class CreateEmployeeRepository extends BaseRepository
             return $this->error("Only teacher role can be created.");
         }
 
-        return $this->success('School calendar enrollment created successfully');
+        return $this->success('Employee account created successfully!');
     }
 }

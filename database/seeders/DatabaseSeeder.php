@@ -16,7 +16,12 @@ use Database\Seeders\Branch\BranchSeeder,
     Database\Seeders\Section\SectionSubjectSeeder,
     Database\Seeders\Student\StudentSeeder,
     Database\Seeders\Subject\InformationTechnologySubjectSeeder,
-    Database\Seeders\Subject\GeneralEducationSubjectSeeder;
+    Database\Seeders\Subject\GeneralEducationSubjectSeeder,
+    Database\Seeders\Building\BuildingSeeder,
+    Database\Seeders\Laboratory\LaboratorySeeder,
+    Database\Seeders\Room\RoomSeeder,
+    Database\Seeders\SchoolYear\SchoolYearSeeder,
+    Database\Seeders\Section\SectionSubjectDateSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -36,7 +41,12 @@ class DatabaseSeeder extends Seeder
             GeneralEducationSubjectSeeder::class,
             CurriculumSeeder::class,
             SectionSubjectSeeder::class,
-            InformationTechnologyCurriculumSubjectSeeder::class
+            InformationTechnologyCurriculumSubjectSeeder::class,
+            BuildingSeeder::class,
+            LaboratorySeeder::class,
+            RoomSeeder::class,
+            SchoolYearSeeder::class,
+            SectionSubjectDateSeeder::class
         ]);
         
 

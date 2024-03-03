@@ -2,10 +2,14 @@
 
 namespace App\Models\Section;
 
+
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
+use App\Models\Subject\Subject,
+    App\Models\Employee\Employee;
 
 use Illuminate\Support\Str;
 
@@ -31,5 +35,17 @@ class SectionSubject extends Model
         'created_at',
         'updated_at'
     ];
+
+    protected function subject() {
+        return $this->belongsTo(Subject::class, 'subject_id');
+    }
+
+    protected function section() {
+        return $this->belongsTo(Section::class, 'section_id');
+    }
+
+    protected function employee() {
+        return $this->belongsTo(Employee::class, 'employee_id');
+    }
 
 }

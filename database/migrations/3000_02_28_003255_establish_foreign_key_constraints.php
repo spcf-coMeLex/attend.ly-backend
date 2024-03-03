@@ -82,6 +82,67 @@ return new class extends Migration
             $table->foreign('student_id')->references('id')->on('students');
         });
 
+        /*****************************************  SECTION SUBJECT DATE  *****************************************/
+        Schema::table('section_subject_dates', function (Blueprint $table)
+        {
+            $table->foreign('section_subject_id')->references('id')->on('section_subjects');
+            $table->foreign('room_id')->references('id')->on('rooms');
+        });
+
+        /*****************************************  ROOM  *****************************************/
+        Schema::table('rooms', function (Blueprint $table)
+        {
+            $table->foreign('branch_id')->references('id')->on('branches');
+            $table->foreign('laboratory_id')->references('id')->on('laboratories');
+            $table->foreign('building_id')->references('id')->on('buildings')->onDelete('cascade');
+        });
+
+        /*****************************************  LABORATORY  *****************************************/
+        Schema::table('laboratories', function (Blueprint $table)
+        {
+            $table->foreign('branch_id')->references('id')->on('branches');
+        });
+
+        /*****************************************  BUILDING  *****************************************/
+        Schema::table('buildings', function (Blueprint $table)
+        {
+            $table->foreign('branch_id')->references('id')->on('branches');
+        });
+
+        /*****************************************  SEMESTER  *****************************************/
+        Schema::table('semesters', function (Blueprint $table)
+        {
+            $table->foreign('school_year_id')->references('id')->on('school_years')->onDelete('cascade');
+        });
+
+        /*****************************************  SCHOOL YEAR  *****************************************/
+        Schema::table('school_years', function (Blueprint $table)
+        {
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
+        });
+
+        /*****************************************  ATTENDANCE HISTORY  *****************************************/
+        Schema::table('attendance_history', function (Blueprint $table)
+        {
+            $table->foreign('section_subject_id')->references('id')->on('section_subjects');
+        });
+
+        /*****************************************  STUDENT SECTION  *****************************************/
+        Schema::table('student_sections', function (Blueprint $table)
+        {
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('section_id')->references('id')->on('sections');
+        });
+        
+        /*****************************************  STUDENT SECTION SUBJECT  *****************************************/
+        Schema::table('student_section_subjects', function (Blueprint $table)
+        {
+            $table->foreign('student_section_id')->references('id')->on('student_sections');
+            $table->foreign('section_subject_id')->references('id')->on('section_subjects');
+        });
+
+        
+
     }
 
     /**

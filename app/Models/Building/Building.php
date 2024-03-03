@@ -1,39 +1,34 @@
 <?php
 
-namespace App\Models\Employee;
+namespace App\Models\Building;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use App\Models\Branch\Branch;
 
-use Illuminate\Support\Str;
-
-class Employee extends Model
+class Building extends Model
 {
     use HasFactory, SoftDeletes, HasUuids;
-
-    protected $table = "employees";
-
+    protected $table    = "buildings";
+    
     protected $fillable = [
-        'uId',
-        'first_name',
-        'middle_name',
-        'last_name',
-        'gender',
-        'age',
-        'department_id',
+        'code',
+        'name',
         'branch_id'
     ];
 
     protected $hidden = [
         'id',
-        'uId',
-        'department_id',
         'branch_id',
         'deleted_at',
         'created_at',
         'updated_at'
     ];
+
+    protected function branch() {
+        return $this->belongsTo(Branch::class, 'branch_id');
+    }
 }

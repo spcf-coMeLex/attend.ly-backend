@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('principal_id');
+            $table->string('uId');
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');
             $table->string('parents_email')->nullable();
             $table->enum('gender', ['MALE', 'FEMALE']);
             $table->date('birth_date');
+            $table->integer('age');
             $table->string('address');
             $table->uuid('program_id');
             $table->uuid('department_id');

@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('section_subjects', function (Blueprint $table) {
+        Schema::create('rooms', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->integer('student_counter');
-            $table->integer('student_limit');
-            $table->uuid('section_id');
             $table->string('code');
-            $table->uuid('subject_id');
-            $table->uuid('employee_id')->nullable();
+            $table->string('name');
+            $table->enum('type', ['LECTURE', 'LABORATORY']);
+            $table->enum('education_type', ['COLLEGE', 'BASIC EDUCATION']);
+            $table->integer('class_size');
+            $table->uuid('branch_id');
+            $table->uuid('laboratory_id')->nullable();
+            $table->uuid('building_id');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('class_subjects');
+        Schema::dropIfExists('rooms');
     }
 };

@@ -19,14 +19,16 @@ class Student extends Model
     protected $table = "students";
 
     protected $fillable = [
-        'principal_id',
+        'uId',
         'first_name',
         'middle_name',
         'last_name',
         'parents_email',
         'gender',
         'birth_date',
-        'address',
+        'age',
+        'address',  
+        'program_id',
         'department_id',
         'branch_id',
         'role'
@@ -34,7 +36,7 @@ class Student extends Model
 
     protected $hidden = [
         'id',
-        'principal_id',
+        'uId',
         'department_id',
         'branch_id'
     ];
