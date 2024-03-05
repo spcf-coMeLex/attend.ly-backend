@@ -21,6 +21,7 @@ class Section extends Model
 
     protected $fillable = [
         'code',
+        'emoji',
         'year_level',
         'semester',
         'branch_id',

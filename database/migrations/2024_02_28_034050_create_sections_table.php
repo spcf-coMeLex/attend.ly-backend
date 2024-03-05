@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('code');
+            $table->string('emoji')->nullable();
             $table->string('year_level');
             $table->string('semester');
             $table->uuid('branch_id');

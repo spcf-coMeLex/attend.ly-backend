@@ -7,21 +7,25 @@ use App\Repositories\BaseRepository;
 
 use App\Models\Attendance\AttendanceHistory;
 
+use Carbon\Carbon;
+
 class CreateAttendanceHistoryRepository extends BaseRepository
 {
     public function execute($request)
     {
+
         $attendance = AttendanceHistory::where('uId', $request->uId)->first();
         if ($attendance || $request->error == true) {
             return $this->error("Something went wrong!");
         } else{
-            $sectionSubject = SectionSubject::where('code', $request->sectionSubjectCode)->first();
-            AttendanceHistory::create([
-                "uId"                   => $request->uId,
-                "section_subject_id"    => $sectionSubject->id,
-                "date"                  => $request->date,
-                "time"                  => $request->time
-            ]);
+                $sectionSubject = SectionSubject::where('code', $request->sectionSubjectCode)->first();
+                AttendanceHistory::create([
+                    "uId"                   => $request->uId,
+                    "section_subject_id"    => $sectionSubject->id,
+                    "date"                  => $request->date,
+                    "time"                  => $request->time,
+                    "status"                => $request->status
+                ]);
         }
 
         return $this->success('Attendance history created successfully!');

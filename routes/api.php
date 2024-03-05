@@ -23,15 +23,15 @@ use App\Http\Controllers\Attendance\AttendanceHistoryController,
 // **Employees
 Route::prefix('employees')->group(function () {
     Route::post('/create', [EmployeeController::class, 'create']);
+    Route::post('/dashboard/show', [EmployeeController::class, 'showDashboard']);
+    Route::post('/section/show', [EmployeeController::class, 'showSection']);
+    Route::post('section-subject/show', [EmployeeController::class, 'showSectionSubject']);
+    Route::post('/subject/show', [EmployeeController::class, 'showSubject']);
+    Route::post('/student/show', [EmployeeController::class, 'showStudent']);
 });
 
-Route::prefix('dashboard')->group(function (){
-    Route::post('/show', [EmployeeController::class, 'showDashboard']);
-});
 
-
-
-// **Employees
+// **Students
 Route::prefix('students')->group(function () {
     Route::post('/create', [StudentController::class, 'create']);
 });

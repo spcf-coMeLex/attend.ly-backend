@@ -24,12 +24,12 @@ class SectionSubjectDate extends Model
 
     protected $hidden = [
         'id',
-        'schedule_subject_id',
+        'section_subject_id',
         'room_id',
     ];
 
-    protected function scheduleSubject() {
-        return $this->belongsTo(SectionSubject::class, 'schedule_subject_id');
+    protected function sectionSubject() {
+        return $this->belongsTo(SectionSubject::class, 'section_subject_id');
     }
     
     protected function room() {

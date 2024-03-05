@@ -38,7 +38,10 @@ class Student extends Model
         'id',
         'uId',
         'department_id',
-        'branch_id'
+        'branch_id',
+        'deleted_at',
+        'updated_at',
+        'created_at'
     ];
 
     protected function department() {

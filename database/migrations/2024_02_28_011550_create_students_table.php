@@ -25,6 +25,7 @@ return new class extends Migration
             $table->uuid('program_id');
             $table->uuid('department_id');
             $table->uuid('branch_id');
+            $table->integer('points')->default(0);
             $table->enum('role', ['STUDENT']);
             $table->softDeletes();
             $table->timestamps();

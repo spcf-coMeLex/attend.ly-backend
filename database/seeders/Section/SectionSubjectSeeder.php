@@ -7,6 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use App\Models\Section\Section,
+    App\Models\Employee\Employee,
     App\Models\Subject\Subject;
 
 use Carbon\Carbon;
@@ -164,7 +165,7 @@ class SectionSubjectSeeder extends Seeder
                 "student_limit"                 => 5,
                 "section_id"                    => Section::where('year_level', 'SECOND YEAR')->where('semester', "FIRST SEMESTER")->first()->id,
                 "code"                          => "2410858",
-                "subject_id"                    => Subject::where("code", "IML")->first()->id
+                "subject_id"                    => Subject::where("code", "IML")->first()->id,
             ],
             [
                 "student_counter"               => 0,
