@@ -27,7 +27,7 @@ class CreateEmployeeReqeust extends FormRequest
             'middleName' => 'nullable|string',
             'lastName' => 'required|string',
             'gender' => 'required|in:MALE,FEMALE',
-            'age' => 'required|integer',
+            'birthDate' => 'required|date',
             'departmentCode' => 'required|string',
             'branchName' => 'required|string',
         ];
