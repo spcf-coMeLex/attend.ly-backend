@@ -28,7 +28,7 @@ class CreateEmployeeRepository extends BaseRepository
                 "middle_name"       => $request->middleName,
                 "last_name"         => $request->lastName,
                 "gender"            => $request->gender,
-                "birthDate"         => $request->birthDate,
+                "birth_date"         => $request->birthDate,
                 "department_id"     => $department->id,
                 "branch_id"         => $branch->id
             ]);
@@ -87,7 +87,7 @@ class CreateEmployeeRepository extends BaseRepository
 
 
 
-            
+
         } else{
             return $this->error("Only teacher role can be created or Unique ID already exist.");
         }
