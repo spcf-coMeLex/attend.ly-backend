@@ -21,8 +21,7 @@ class Employee extends Model
         'first_name',
         'middle_name',
         'last_name',
-        'gender',
-        'age',
+        'birth_date',
         'department_id',
         'branch_id'
     ];

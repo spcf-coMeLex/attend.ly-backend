@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->enum("gender", ["MALE", "FEMALE"]);
-            $table->integer('age');
+            $table->date('birth_date');
             $table->uuid('department_id');
             $table->uuid('branch_id');
             $table->softDeletes();

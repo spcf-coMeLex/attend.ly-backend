@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Employee;
+namespace App\Http\Requests\Student;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateEmployeeReqeust extends FormRequest
+class ShowWalletRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,14 +22,7 @@ class CreateEmployeeReqeust extends FormRequest
     public function rules(): array
     {
         return [
-            'uId' => 'required|string',
-            'firstName' => 'required|string',
-            'middleName' => 'nullable|string',
-            'lastName' => 'required|string',
-            'gender' => 'required|in:MALE,FEMALE',
-            'age' => 'required|integer',
-            'departmentCode' => 'required|string',
-            'branchName' => 'required|string',
+            //
         ];
     }
 }

@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('parents_email')->nullable();
             $table->enum('gender', ['MALE', 'FEMALE']);
             $table->date('birth_date');
-            $table->integer('age');
             $table->string('address');
             $table->uuid('program_id');
             $table->uuid('department_id');

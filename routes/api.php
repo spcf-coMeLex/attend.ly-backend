@@ -33,7 +33,8 @@ Route::prefix('employees')->group(function () {
 
 // **Students
 Route::prefix('students')->group(function () {
-    Route::post('/create', [StudentController::class, 'create']);
+    Route::post('/create',          [StudentController::class, 'create']);
+    Route::post('/wallet/show',     [StudentController::class, 'showWallet']);
 });
 
 

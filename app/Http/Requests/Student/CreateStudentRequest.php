@@ -22,7 +22,19 @@ class CreateStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'uId' => 'required|string',
+            'firstName' => 'required|string',
+            'middleName' => 'nullable|string',
+            'lastName' => 'required|string',
+            'parentsEmail' => 'nullable|email',
+            'gender' => 'required|in:MALE,FEMALE',
+            'birthDate' => 'required|date',
+            'address' => 'required|string',
+            'programCode' => 'required|string',
+            'departmentCode' => 'required|string',
+            'branchName' => 'required|string',
+            'points' => 'integer',
+            'role' => 'required|in:STUDENT',
         ];
     }
 }

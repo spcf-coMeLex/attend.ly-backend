@@ -64,7 +64,6 @@ class CreateStudentRepository extends BaseRepository
                 "parents_email"     => $request->parentsEmail,
                 "gender"            => $request->gender,
                 "birth_date"        => $request->birthDate,
-                "age"               => $request->age,
                 "address"           => $request->address,
                 "program_id"        => $program->id,
                 "department_id"     => $department->id,

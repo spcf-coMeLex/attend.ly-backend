@@ -28,7 +28,7 @@ class CreateEmployeeRepository extends BaseRepository
                 "middle_name"       => $request->middleName,
                 "last_name"         => $request->lastName,
                 "gender"            => $request->gender,
-                "age"               => $request->age,
+                "birthDate"         => $request->birthDate,
                 "department_id"     => $department->id,
                 "branch_id"         => $branch->id
             ]);

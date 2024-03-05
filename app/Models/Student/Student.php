@@ -26,7 +26,6 @@ class Student extends Model
         'parents_email',
         'gender',
         'birth_date',
-        'age',
         'address',  
         'program_id',
         'department_id',
