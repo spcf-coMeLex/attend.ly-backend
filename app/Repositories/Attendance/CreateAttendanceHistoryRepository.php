@@ -22,16 +22,17 @@ class CreateAttendanceHistoryRepository extends BaseRepository
                 $sectionSubject = SectionSubject::where('code', $request->sectionSubjectCode)->first();
                 AttendanceHistory::create([
                     "uId"                   => $request->uId,
+                    "student_id"            => $request->studentId, 
                     "section_subject_id"    => $sectionSubject->id,
                     "date"                  => $request->date,
                     "time"                  => $request->time,
                     "status"                => $request->status
                 ]);
 
-                Mail::send('emails.attendance', ['status' => $request->status], function ($message) use ($request) {
-                    $message->to($request->email);
-                    $message->subject('Attendance Notification');
-                });
+                // Mail::send('emails.attendance', ['status' => $request->status], function ($message) use ($request) {
+                //     $message->to($request->email);
+                //     $message->subject('Attendance Notification');
+                // });
         }
 
         return $this->success('Attendance history created successfully!');

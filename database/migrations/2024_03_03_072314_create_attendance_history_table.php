@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('attendance_history', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('uId');  
+            $table->string('uId');
+            $table->uuid('student_id');
             $table->uuid('section_subject_id');
             $table->date('date');
             $table->time('time');

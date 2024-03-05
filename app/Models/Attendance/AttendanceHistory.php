@@ -18,6 +18,7 @@ class AttendanceHistory extends Model
     
     protected $fillable = [
         'uId',
+        'student_id',
         'section_subject_id',
         'date',
         'time',
@@ -27,7 +28,12 @@ class AttendanceHistory extends Model
     protected $hidden = [
         'id',
         'uId',
+        'student_id',
         'section_subject_id'
+    ];
+
+    protected $casts = [
+        'date' => 'date'
     ];
 
     protected function sectionSubject() {
