@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('middle_name');
             $table->string('last_name');
             $table->string('parents_email')->nullable();
-            $table->enum('gender', ['MALE', 'FEMALE']);
+            $table->enum('gender', ['MALE', 'FEMALE', 'OTHER']);
             $table->date('birth_date');
             $table->string('address');
             $table->uuid('program_id');
