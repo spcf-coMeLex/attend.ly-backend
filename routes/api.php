@@ -25,7 +25,7 @@ Route::prefix('employees')->group(function () {
     Route::post('/create', [EmployeeController::class, 'create']);
     Route::post('/dashboard/show', [EmployeeController::class, 'showDashboard']);
     Route::post('/section/show', [EmployeeController::class, 'showSection']);
-    Route::post('section-subject/show', [EmployeeController::class, 'showSectionSubject']);
+    Route::post('/section-subject/show', [EmployeeController::class, 'showSectionSubject']);
     Route::post('/subject/show', [EmployeeController::class, 'showSubject']);
     Route::post('/student/show', [EmployeeController::class, 'showStudent']);
 });
