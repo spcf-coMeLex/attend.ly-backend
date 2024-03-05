@@ -35,4 +35,8 @@ class Employee extends Model
         'created_at',
         'updated_at'
     ];
+
+    protected $casts = [
+        'birth_date' => 'date'
+    ];
 }
