@@ -17,9 +17,10 @@ class ShowDashboardRepository extends BaseRepository
     public function execute($request)
     {
         $now = Carbon::now();
-        $employee = Employee::where('uId', $request->teacherUId)->first();
+        $employee = Employee::where('id', $request->teacherUId)->first();
         if($employee != null){
             $employeeSubjectsId = SectionSubject::where('employee_id', $employee->id)->pluck('id')->toArray();
+            
             $data = [];
             $dayName = now()->format('l');
             $currentSectionSubjectDate = SectionSubjectDate::whereIn('section_subject_id', $employeeSubjectsId)
@@ -37,7 +38,7 @@ class ShowDashboardRepository extends BaseRepository
             
                                         
             if($currentSectionSubjectDate){
-                $allAttendanceHistory = AttendanceHistory::where('section_subject_id', $currentSectionSubjectDate->sectionSubject->id)->pluck('uId')->toArray();
+                $allAttendanceHistory = AttendanceHistory::where('section_subject_id', $currentSectionSubjectDate->sectionSubject->id)->pluck('id')->toArray();
                 $attendanceHistory = AttendanceHistory::where('section_subject_id', $currentSectionSubjectDate->sectionSubject->id)
                                     ->whereDate('date', "=", $now)->get();
 
@@ -59,10 +60,10 @@ class ShowDashboardRepository extends BaseRepository
                         "presentStudents"               => $presentStudent,
                         "absentStudents"                => $absentStudent,
 
-                        "subjectAttendanceHistory"      => ["uId"           => $allAttendanceHistory],
+                        "subjectAttendanceHistory"      => ["id"           => $allAttendanceHistory],
 
-                        "nextSubject"                   => ["subjectCode" => $nextSectionSubjectDate->sectionSubject->subject->code,
-                                                            "subjectName" => $nextSectionSubjectDate->sectionSubject->subject->name] ?? null,
+                        "nextSubject"                   => ["subjectCode" => $nextSectionSubjectDate->sectionSubject->subject->code ?? null,
+                                                            "subjectName" => $nextSectionSubjectDate->sectionSubject->subject->name ?? null],
                     ]);
                 } else {
                     return $this->error('Something went wrong');
