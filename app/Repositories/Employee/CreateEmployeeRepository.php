@@ -15,8 +15,7 @@ class CreateEmployeeRepository extends BaseRepository
 {
     public function execute($request)
     {
-        $checker = Employee::where('uId', $request->uId)->first();
-        if ($request->role == "TEACHER" && $checker === null) {
+        if ($request->role == "TEACHER") {
             $branch = Branch::where('name', $request->branchName)->first();
             $department = Department::where('code', $request->departmentCode)->first();
             $sectionId = Section::whereIn('code', ['CCIS3A', 'CCIS5A'])->pluck('id')->toArray();

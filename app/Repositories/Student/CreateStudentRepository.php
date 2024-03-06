@@ -20,9 +20,7 @@ class CreateStudentRepository extends BaseRepository
 {
     public function execute($request)
     {
-        $studentChecker = Student::where('uId', $request->uId)->first();
-        
-        if ($request->role == "STUDENT" && $studentChecker == null) {
+        if ($request->role == "STUDENT") {
             $schoolYear = SchoolYear::where('status', 'OPEN')->first();
             $semester = Semester::where('enrollment_status', 'OPEN')->first();
             $section = Section::where('code', $request->sectionCode)->first();
@@ -89,7 +87,7 @@ class CreateStudentRepository extends BaseRepository
                 ]);
             }
 
-            
+
 
             ActivityLog::create([
                 "student_id"    => $student->id,
@@ -98,7 +96,7 @@ class CreateStudentRepository extends BaseRepository
                 "message"       => "SUCCESSFULLY CREATED AN STUDENT ACCOUNT"
             ]);
 
-            
+
         } else{
             return $this->error("Only student role can be created or student already registered.");
         }
