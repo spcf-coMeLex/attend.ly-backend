@@ -13,7 +13,7 @@ class SectionSubjectDate extends Model
 
     protected $table      = "section_subject_dates";
     public    $timestamps = false;
-    
+
     protected $fillable = [
         'section_subject_id',
         'room_id',
@@ -28,10 +28,15 @@ class SectionSubjectDate extends Model
         'room_id',
     ];
 
+    protected $casts = [
+        'time_start' => 'datetime:H:i:s',
+        'time_end'   => 'datetime:H:i:s',
+    ];
+
     protected function sectionSubject() {
         return $this->belongsTo(SectionSubject::class, 'section_subject_id');
     }
-    
+
     protected function room() {
         return $this->belongsTo(Room::class, 'room_id');
     }
