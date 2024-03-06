@@ -19,14 +19,13 @@ class Student extends Model
     protected $table = "students";
 
     protected $fillable = [
-        'uId',
         'first_name',
         'middle_name',
         'last_name',
         'parents_email',
         'gender',
         'birth_date',
-        'address',  
+        'address',
         'program_id',
         'department_id',
         'branch_id',
@@ -43,6 +42,10 @@ class Student extends Model
         'created_at'
     ];
 
+    protected $casts = [
+        'birth_date' => 'date'
+    ];
+
     protected function department() {
         return $this->belongsTo(Department::class, 'department_id');
     }
@@ -50,9 +53,4 @@ class Student extends Model
     protected function branch() {
         return $this->belongsTo(Branch::class, 'branch_id');
     }
-
-    protected $casts = [
-        'birth_date' => 'date'
-    ];
-
 }

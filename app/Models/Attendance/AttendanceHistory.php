@@ -15,9 +15,8 @@ class AttendanceHistory extends Model
     protected $table    = "attendance_history";
 
     public $timestamps = false;
-    
+
     protected $fillable = [
-        'uId',
         'student_id',
         'section_subject_id',
         'date',
@@ -33,7 +32,8 @@ class AttendanceHistory extends Model
     ];
 
     protected $casts = [
-        'date' => 'date'
+        'date' => 'date',
+        'time' => 'datetime:H:i:s'
     ];
 
     protected function sectionSubject() {
