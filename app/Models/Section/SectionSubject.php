@@ -48,4 +48,8 @@ class SectionSubject extends Model
         return $this->belongsTo(Employee::class, 'employee_id');
     }
 
+    public function sectionSubjectDates() {
+        return $this->hasMany(SectionSubjectDate::class, 'section_subject_id');
+    }
+
 }
