@@ -22,7 +22,6 @@ class CreateStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'uId' => 'required|string',
             'firstName' => 'required|string',
             'middleName' => 'nullable|string',
             'lastName' => 'required|string',
