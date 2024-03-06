@@ -91,6 +91,6 @@ class CreateEmployeeRepository extends BaseRepository
             return $this->error("Only teacher role can be created or Unique ID already exist.");
         }
 
-        return $this->success('Employee account created successfully!');
+        return $this->success('Employee account created successfully!', $employee->id);
     }
 }

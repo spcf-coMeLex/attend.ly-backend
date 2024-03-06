@@ -12,8 +12,10 @@ use App\Models\Program\Program,
     App\Models\Department\Department,
     App\Models\Student\Student,
     App\Models\Section\Section,
+    App\Models\Section\SectionSubjectDate,
     App\Models\Student\StudentSection,
     App\Models\Student\StudentSectionSubject,
+    App\Models\Student\StudentSectionSubjectDate,
     App\Models\ActivityLog\ActivityLog;
 
 class CreateStudentRepository extends BaseRepository
@@ -74,17 +76,33 @@ class CreateStudentRepository extends BaseRepository
                 "school_year"           => $schoolYear->school_year,
                 "semester"              => $semester->semester
             ]);
-
+            $temp = [];
             foreach($sectionSubjects as $sectionSubject){
                 $sectionSubject->student_counter += 1;
                 $sectionSubject->update([
                     "student_counter"      => $sectionSubject->student_counter
                 ]);
 
-                StudentSectionSubject::create([
+                $studentSectionSubject = StudentSectionSubject::create([
                     "student_section_id"        => $studentSection->id,
                     "section_subject_id"        => $sectionSubject->id
                 ]);
+
+                $subjectDates = SectionSubjectDate::where('section_subject_id', $studentSectionSubject->section_subject_id)->get();
+                if($subjectDates){
+                    foreach($subjectDates as $subjectDate){
+                        StudentSectionSubjectDate::create([
+                            'student_id'                   => $student->id,
+                            'student_section_subject_id'   => $studentSectionSubject->id,
+                            'room_id'                      => $subjectDate->room_id,
+                            'day'                          => $subjectDate->day,
+                            'time_start'                   => $subjectDate->time_start,
+                            'time_end'                     => $subjectDate->time_end                   
+                        ]);
+                    }
+                    
+                }
+                
             }
 
 
@@ -101,6 +119,6 @@ class CreateStudentRepository extends BaseRepository
             return $this->error("Only student role can be created or student already registered.");
         }
 
-        return $this->success('Student account created successfully!');
+        return $this->success('Student account created successfully!', $student->id);
     }
 }

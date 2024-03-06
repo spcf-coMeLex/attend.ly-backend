@@ -142,6 +142,14 @@ return new class extends Migration
             $table->foreign('section_subject_id')->references('id')->on('section_subjects');
         });
 
+        /*****************************************  STUDENT SECTION SUBJECT DATE  *****************************************/
+        Schema::table('student_subject_dates', function (Blueprint $table)
+        {
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('student_section_subject_id')->references('id')->on('student_section_subjects');
+            $table->foreign('room_id')->references('id')->on('rooms');
+        });
+
         
 
     }

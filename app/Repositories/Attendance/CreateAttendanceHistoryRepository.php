@@ -29,7 +29,7 @@ class CreateAttendanceHistoryRepository extends BaseRepository
         if (! $sectionSubjectDate) {
             return $this->error('No schedule found for the current day!');
         }
-
+       
         // Check if the student already has an attendance history for the subject at this schedule
         $formattedTimeEnd = Carbon::parse($sectionSubjectDate->time_end)->format('H:i:s');
         $formattedDate = Carbon::parse($request->date)->format('Y-m-d');
