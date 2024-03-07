@@ -125,7 +125,7 @@ return new class extends Migration
         Schema::table('attendance_history', function (Blueprint $table)
         {
             $table->foreign('section_subject_id')->references('id')->on('section_subjects');
-            $table->foreign('student_id')->references('id')->on('students');
+            // $table->foreign('student_id')->references('id')->on('students');
         });
 
         /*****************************************  STUDENT SECTION  *****************************************/
