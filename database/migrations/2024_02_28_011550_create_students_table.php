@@ -13,18 +13,19 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('first_name');
-            $table->string('middle_name')->nullable();
-            $table->string('last_name');
-            $table->string('parents_email')->nullable();
-            $table->enum('gender', ['MALE', 'FEMALE', 'OTHER']);
-            $table->date('birth_date');
-            $table->string('address');
-            $table->uuid('program_id');
-            $table->uuid('department_id');
-            $table->uuid('branch_id');
-            $table->integer('points')->default(0);
-            $table->enum('role', ['STUDENT']);
+            $table->string('principal_id');
+            // $table->string('first_name');
+            // $table->string('middle_name')->nullable();
+            // $table->string('last_name');
+            // $table->string('parents_email')->nullable();
+            // $table->enum('gender', ['MALE', 'FEMALE', 'OTHER']);
+            // $table->date('birth_date');
+            // $table->string('address');
+            // $table->uuid('program_id');
+            // $table->uuid('department_id');
+            // $table->uuid('branch_id');
+            // $table->integer('points')->default(0);
+            // $table->enum('role', ['STUDENT']);
             $table->softDeletes();
             $table->timestamps();
         });

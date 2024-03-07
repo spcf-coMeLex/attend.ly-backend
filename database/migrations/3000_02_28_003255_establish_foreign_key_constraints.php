@@ -29,20 +29,20 @@ return new class extends Migration
 
 
         /*****************************************  EMPLOYEE  *****************************************/
-        Schema::table('employees', function (Blueprint $table)
-        {
-            $table->foreign('department_id')->references('id')->on('departments');
-            $table->foreign('branch_id')->references('id')->on('branches');
-        });
+        // Schema::table('employees', function (Blueprint $table)
+        // {
+        //     $table->foreign('department_id')->references('id')->on('departments');
+        //     $table->foreign('branch_id')->references('id')->on('branches');
+        // });
 
 
         /*****************************************  STUDENT  *****************************************/
-        Schema::table('students', function (Blueprint $table)
-        {
-            $table->foreign('program_id')->references('id')->on('programs');
-            $table->foreign('department_id')->references('id')->on('departments');
-            $table->foreign('branch_id')->references('id')->on('branches');
-        });
+        // Schema::table('students', function (Blueprint $table)
+        // {
+        //     $table->foreign('program_id')->references('id')->on('programs');
+        //     $table->foreign('department_id')->references('id')->on('departments');
+        //     $table->foreign('branch_id')->references('id')->on('branches');
+        // });
 
 
         /*****************************************  SECTION SUBJECT  *****************************************/
@@ -140,6 +140,14 @@ return new class extends Migration
         {
             $table->foreign('student_section_id')->references('id')->on('student_sections');
             $table->foreign('section_subject_id')->references('id')->on('section_subjects');
+        });
+
+        /*****************************************  STUDENT SECTION SUBJECT DATE  *****************************************/
+        Schema::table('student_subject_dates', function (Blueprint $table)
+        {
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('student_section_subject_id')->references('id')->on('student_section_subjects');
+            $table->foreign('room_id')->references('id')->on('rooms');
         });
 
         

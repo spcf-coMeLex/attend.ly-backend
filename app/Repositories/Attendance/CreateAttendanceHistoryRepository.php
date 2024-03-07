@@ -7,6 +7,8 @@ use App\Models\Section\SectionSubject;
 use App\Repositories\BaseRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 
 class CreateAttendanceHistoryRepository extends BaseRepository
 {
@@ -16,6 +18,8 @@ class CreateAttendanceHistoryRepository extends BaseRepository
         //        if ($attendance || $request->error) {
         //            return $this->error("Something went wrong!");
         //        }
+
+        
         if ($request->error) {
             return $this->error('Something went wrong!');
         }
@@ -29,11 +33,11 @@ class CreateAttendanceHistoryRepository extends BaseRepository
         if (! $sectionSubjectDate) {
             return $this->error('No schedule found for the current day!');
         }
-
+       
         // Check if the student already has an attendance history for the subject at this schedule
         $formattedTimeEnd = Carbon::parse($sectionSubjectDate->time_end)->format('H:i:s');
         $formattedDate = Carbon::parse($request->date)->format('Y-m-d');
-
+        
         $attendance = AttendanceHistory::where('student_id', $request->studentId)
             ->where('section_subject_id', $sectionSubject->id)
             ->where('date', $formattedDate)
@@ -46,23 +50,35 @@ class CreateAttendanceHistoryRepository extends BaseRepository
 
         // Get the attendance status
         $status = $this->getAttendanceStatus($request->time, $sectionSubjectDate);
-
         // Create a new attendance history
-        AttendanceHistory::create([
-            'uId' => $request->uId,
-            'student_id' => $request->studentId,
+        $student = Student::where('principal_id', $request-<>)
+        $data = [
+            'student_id' => $request->studentInfo->principal_id,
             'section_subject_id' => $sectionSubject->id,
             'date' => $request->date,
             'time' => $request->time,
             'status' => $status,
-        ]);
+        ];
 
+        AttendanceHistory::create($data);
+        
+        // Serialize the array to a string
+        $serializedData = serialize($data);
+
+        // Hash the serialized string
+        $hashedData = hash('sha256', $serializedData);
+        
         Mail::send('emails.attendance', ['status' => $status], function ($message) use ($request) {
             $message->to($request->email);
             $message->subject('Attendance Notification');
         });
 
-        return $this->success('Attendance history created successfully!');
+        $dataCollection = [
+            'data'          => $data,
+            'hashedData'    => $hashedData
+        ];
+
+        return $this->success('Attendance history created successfully!', $dataCollection);
 
     }
 

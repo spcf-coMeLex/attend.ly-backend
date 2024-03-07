@@ -14,7 +14,7 @@ class ShowSectionRepository extends BaseRepository
 {
     public function execute($request)
     {
-        $employee = Employee::where('uId', $request->teacherUId)->first();
+        $employee = Employee::where('principal', $request->teacherInfo->principalId)->first();
         if ($employee != null) {
             $sectionId = SectionSubject::where('employee_id', $employee->id)->pluck('section_id')->toArray(); 
             $section = Section::whereIn('id', $sectionId)->get();

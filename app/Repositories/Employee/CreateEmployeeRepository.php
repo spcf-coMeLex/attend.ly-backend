@@ -21,16 +21,17 @@ class CreateEmployeeRepository extends BaseRepository
             $sectionId = Section::whereIn('code', ['CCIS3A', 'CCIS5A'])->pluck('id')->toArray();
             $sectionSubjects = SectionSubject::whereIn('section_id', $sectionId)->get();
 
-            $employee = Employee::create([
-                "uId"               => $request->uId,
+            $employeeData = [
                 "first_name"        => $request->firstName,
                 "middle_name"       => $request->middleName,
                 "last_name"         => $request->lastName,
                 "gender"            => $request->gender,
-                "birth_date"         => $request->birthDate,
+                "birth_date"        => $request->birthDate,
                 "department_id"     => $department->id,
                 "branch_id"         => $branch->id
-            ]);
+            ];
+
+            $employee = Employee::create($employeeData);
 
             ActivityLog::create([
                 "action"        => "CREATE",
@@ -84,13 +85,22 @@ class CreateEmployeeRepository extends BaseRepository
                 }
             }
 
+            // Serialize the array to a string
+            $serializedData = serialize($employeeData);
 
+            // Hash the serialized string
+            $hashedData = hash('sha256', $serializedData);          
+
+            $dataCollection = [
+                'employeeData'      => $employeeData,
+                'hashedData'        => $hashedData
+            ];
 
 
         } else{
             return $this->error("Only teacher role can be created or Unique ID already exist.");
         }
 
-        return $this->success('Employee account created successfully!');
+        return $this->success('Employee account created successfully!', $dataCollection);
     }
 }

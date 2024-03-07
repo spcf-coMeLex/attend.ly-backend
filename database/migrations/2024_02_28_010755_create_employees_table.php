@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('first_name');
-            $table->string('middle_name')->nullable();
-            $table->string('last_name');
-            $table->enum("gender", ["MALE", "FEMALE", 'OTHER']);
-            $table->date('birth_date');
-            $table->uuid('department_id');
-            $table->uuid('branch_id');
+            $table->string('principal_id');
+            // $table->string('first_name');
+            // $table->string('middle_name')->nullable();
+            // $table->string('last_name');
+            // $table->enum("gender", ["MALE", "FEMALE", 'OTHER']);
+            // $table->date('birth_date');
+            // $table->uuid('department_id');
+            // $table->uuid('branch_id');
             $table->softDeletes();
             $table->timestamps();
         });
