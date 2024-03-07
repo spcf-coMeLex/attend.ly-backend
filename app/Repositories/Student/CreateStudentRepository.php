@@ -21,7 +21,7 @@ use App\Models\Program\Program,
 class CreateStudentRepository extends BaseRepository
 {
     public function execute($request)
-    {       
+    {
         if($request->validated()){
             $schoolYear = SchoolYear::where('status', 'OPEN')->first();
             $semester = Semester::where('enrollment_status', 'OPEN')->first();
@@ -56,8 +56,8 @@ class CreateStudentRepository extends BaseRepository
                 return $this->error("Conflict found!", $data);
             }
 
-        
-            $student = Student::create(['principal_id' => $request->principal_id]);
+
+            $student = Student::create(['principal_id' => $request->principalId]);
 
             $studentSection = StudentSection::create([
                 "student_id"            => $student->id,
@@ -86,12 +86,12 @@ class CreateStudentRepository extends BaseRepository
                             'room_id'                      => $subjectDate->room_id,
                             'day'                          => $subjectDate->day,
                             'time_start'                   => $subjectDate->time_start,
-                            'time_end'                     => $subjectDate->time_end                   
+                            'time_end'                     => $subjectDate->time_end
                         ]);
                     }
-                    
+
                 }
-                
+
             }
 
             ActivityLog::create([
@@ -101,7 +101,7 @@ class CreateStudentRepository extends BaseRepository
                 "message"       => "SUCCESSFULLY CREATED AN STUDENT ACCOUNT"
             ]);
 
-        
+
         }
     }
 }

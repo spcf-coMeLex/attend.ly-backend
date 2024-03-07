@@ -22,7 +22,7 @@ class CreateEmployeeRepository extends BaseRepository
             $sectionSubjects = SectionSubject::whereIn('section_id', $sectionId)->get();
 
 
-            $employee = Employee::create(['principal_id' => $request->principal_id]);
+            $employee = Employee::create(['principal_id' => $request->principalId]);
 
             ActivityLog::create([
                 "action"        => "CREATE",
@@ -77,6 +77,6 @@ class CreateEmployeeRepository extends BaseRepository
             }
         }
 
-        
+
     }
 }
