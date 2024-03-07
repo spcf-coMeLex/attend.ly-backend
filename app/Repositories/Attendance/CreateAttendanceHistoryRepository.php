@@ -4,6 +4,7 @@ namespace App\Repositories\Attendance;
 
 use App\Models\Attendance\AttendanceHistory;
 use App\Models\Section\SectionSubject;
+use App\Models\Student\Student;
 use App\Repositories\BaseRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
@@ -51,9 +52,9 @@ class CreateAttendanceHistoryRepository extends BaseRepository
         // Get the attendance status
         $status = $this->getAttendanceStatus($request->time, $sectionSubjectDate);
         // Create a new attendance history
-        $student = Student::where('principal_id', $request-<>)
+        $student = Student::where('principal_id', $request->studentInfo->principal_id)->first();
         $data = [
-            'student_id' => $request->studentInfo->principal_id,
+            'student_id' => $student->id,
             'section_subject_id' => $sectionSubject->id,
             'date' => $request->date,
             'time' => $request->time,
@@ -74,8 +75,8 @@ class CreateAttendanceHistoryRepository extends BaseRepository
         });
 
         $dataCollection = [
-            'data'          => $data,
-            'hashedData'    => $hashedData
+            'serializedData'            => $serializedData,
+            'hashedData'                => $hashedData
         ];
 
         return $this->success('Attendance history created successfully!', $dataCollection);

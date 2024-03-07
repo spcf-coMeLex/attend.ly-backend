@@ -85,22 +85,11 @@ class CreateEmployeeRepository extends BaseRepository
                 }
             }
 
-            // Serialize the array to a string
-            $serializedData = serialize($employeeData);
-
-            // Hash the serialized string
-            $hashedData = hash('sha256', $serializedData);          
-
-            $dataCollection = [
-                'employeeData'      => $employeeData,
-                'hashedData'        => $hashedData
-            ];
-
 
         } else{
             return $this->error("Only teacher role can be created or Unique ID already exist.");
         }
 
-        return $this->success('Employee account created successfully!', $dataCollection);
+        return $request->validated();
     }
 }

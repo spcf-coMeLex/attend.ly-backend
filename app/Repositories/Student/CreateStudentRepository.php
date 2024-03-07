@@ -106,16 +106,6 @@ class CreateStudentRepository extends BaseRepository
                 
             }
 
-            // Serialize the array to a string
-            $serializedData = serialize($studentData);
-
-            // Hash the serialized string
-            $hashedData = hash('sha256', $serializedData);          
-
-            $dataCollection = [
-                'studentData'      => $studentData,
-                'hashedData'        => $hashedData
-            ];
             ActivityLog::create([
                 "student_id"    => $student->id,
                 "action"        => "CREATE",
@@ -128,6 +118,6 @@ class CreateStudentRepository extends BaseRepository
             return $this->error("Only student role can be created or student already registered.");
         }
 
-        return $this->success('Student account created successfully!', $dataCollection);
+        return $request->validated();
     }
 }
