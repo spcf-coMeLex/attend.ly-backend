@@ -56,19 +56,8 @@ class CreateStudentRepository extends BaseRepository
                 return $this->error("Conflict found!", $data);
             }
 
-            $studentData = [
-                "first_name"        => $request->firstName,
-                "middle_name"       => $request->middleName,
-                "last_name"         => $request->lastName,
-                "parents_email"     => $request->parentsEmail,
-                "gender"            => $request->gender,
-                "birth_date"        => $request->birthDate,
-                "address"           => $request->address,
-                "program_id"        => $program->id,
-                "department_id"     => $department->id,
-                "branch_id"         => $branch->id,
-            ];
-            $student = Student::create($studentData);
+        
+            $student = Student::create(['principal_id' => $request->studentId]);
 
             $studentSection = StudentSection::create([
                 "student_id"            => $student->id,
