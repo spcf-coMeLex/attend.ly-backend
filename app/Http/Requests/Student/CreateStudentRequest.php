@@ -25,15 +25,14 @@ class CreateStudentRequest extends FormRequest
             'firstName' => 'required|string',
             'middleName' => 'nullable|string',
             'lastName' => 'required|string',
-            'parentsEmail' => 'nullable|email',
-            'gender' => 'required|in:MALE,FEMALE',
+            'gender' => 'required|in:MALE,FEMALE,OTHER',
             'birthDate' => 'required|date',
+            'parentsEmail' => 'nullable|email',
+            'sectionCode' => 'required|string',
             'address' => 'required|string',
             'programCode' => 'required|string',
             'departmentCode' => 'required|string',
             'branchName' => 'required|string',
-            'points' => 'integer',
-            'role' => 'required|in:STUDENT',
         ];
     }
 }
