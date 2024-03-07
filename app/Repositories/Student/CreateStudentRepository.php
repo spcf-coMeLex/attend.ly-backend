@@ -23,7 +23,6 @@ class CreateStudentRepository extends BaseRepository
     public function execute($request)
     {       
 
-        if ($request->role == "STUDENT") {
             $schoolYear = SchoolYear::where('status', 'OPEN')->first();
             $semester = Semester::where('enrollment_status', 'OPEN')->first();
             $section = Section::where('code', $request->sectionCode)->first();
@@ -112,11 +111,6 @@ class CreateStudentRepository extends BaseRepository
                 "module"        => "STUDENT",
                 "message"       => "SUCCESSFULLY CREATED AN STUDENT ACCOUNT"
             ]);
-
-
-        } else{
-            return $this->error("Only student role can be created or student already registered.");
-        }
 
         return $request->validated();
     }

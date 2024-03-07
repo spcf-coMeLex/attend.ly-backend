@@ -15,7 +15,6 @@ class CreateEmployeeRepository extends BaseRepository
 {
     public function execute($request)
     {
-        if ($request->role == "TEACHER") {
             $branch = Branch::where('name', $request->branchName)->first();
             $department = Department::where('code', $request->departmentCode)->first();
             $sectionId = Section::whereIn('code', ['CCIS3A', 'CCIS5A'])->pluck('id')->toArray();
@@ -84,11 +83,6 @@ class CreateEmployeeRepository extends BaseRepository
                     }
                 }
             }
-
-
-        } else{
-            return $this->error("Only teacher role can be created or Unique ID already exist.");
-        }
 
         return $request->validated();
     }
