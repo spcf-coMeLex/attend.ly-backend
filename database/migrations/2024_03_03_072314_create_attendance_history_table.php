@@ -17,7 +17,8 @@ return new class extends Migration
             $table->uuid('section_subject_id');
             $table->date('date');
             $table->time('time');
-            $table->enum('status', ['PRESENT', 'ABSENT', 'LATE']);
+            $table->enum('status', ['PRESENT', 'ABSENT', 'LATE'])->nullable();
+            $table->enum('type', ['IN', 'OUT']);
         });
     }
 

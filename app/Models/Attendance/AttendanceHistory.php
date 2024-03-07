@@ -21,7 +21,8 @@ class AttendanceHistory extends Model
         'section_subject_id',
         'date',
         'time',
-        'status'
+        'status',
+        'type'
     ];
 
     protected $hidden = [
