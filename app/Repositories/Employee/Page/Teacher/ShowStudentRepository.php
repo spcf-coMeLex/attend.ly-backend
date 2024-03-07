@@ -14,19 +14,19 @@ class ShowStudentRepository extends BaseRepository
 {
     public function execute($request)
     {
-        if($request->studentId){
-            $student = Student::where('id', $request->studentId)->first();
+        if($request->studentInfo){
+            $student = Student::where('principal_id]', $request->studentInfo->principal_id)->first();
             $studentAttendance = AttendanceHistory::where('student_id', $student->id)->get();
 
             $data = [
-                "firstName"             => $student->first_name,
-                "middleName"            => $student->middle_name,
-                "lastName"              => $student->last_name,
-                "gender"                => $student->gender,
-                "birthDate"             => $student->birth_date,
-                "address"               => $student->address,
-                "parentsEmail"          => $student->parents_email,
-                "points"                => $student->points,
+                "firstName"             => $request->studentInfo->firstName,
+                "middleName"            => $request->studentInfo->middleName,
+                "lastName"              => $request->studentInfo->lastName,
+                "gender"                => $request->studentInfo->gender,
+                "birthDate"             => $request->studentInfo->birthDate,
+                "address"               => $request->studentInfo->address,
+                "parentsEmail"          => $request->studentInfo->parentsEmail,
+                "points"                => $request->studentInfo->points,
                 "studentAttendance"     => $studentAttendance
             ];
         } else{

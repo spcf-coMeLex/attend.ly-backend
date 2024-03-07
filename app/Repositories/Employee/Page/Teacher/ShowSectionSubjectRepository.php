@@ -16,7 +16,7 @@ class ShowSectionSubjectRepository extends BaseRepository
 {
     public function execute($request)
     {
-        $employee = Employee::where('uId', $request->uId)->first();
+        $employee = Employee::where('principal_id', $request->teacherInfo->principalId)->first();
         if ($employee != null) {
             $section = Section::where('code', $request->sectionCode)->first();
             $sectionSubjects = SectionSubject::where('section_id', $section->id)
@@ -24,6 +24,7 @@ class ShowSectionSubjectRepository extends BaseRepository
             $data = [
                 "subject"   => [],
             ];
+
             foreach($sectionSubjects as $sectionSubject){
                 $sectionSubjectDate = SectionSubjectDate::where('section_subject_id', $sectionSubject->id)->get();
 

@@ -17,7 +17,7 @@ class ShowDashboardRepository extends BaseRepository
     public function execute($request)
     {
         $now = Carbon::now();
-        $employee = Employee::where('id', $request->teacherUId)->first();
+        $employee = Employee::where('principal_id', $request->teacherInfo->principalId)->first();
         if($employee != null){
             $employeeSubjectsId = SectionSubject::where('employee_id', $employee->id)->pluck('id')->toArray();
             
@@ -72,7 +72,7 @@ class ShowDashboardRepository extends BaseRepository
                 return $this->error("There is no current section date");
             }
         } else {
-            return $this->error("uId of the employee doesn't exist");
+            return $this->error("Principal ID of the employee doesn't exist");
         }
         return $this->success('Employee Dashboard', $data);
     }

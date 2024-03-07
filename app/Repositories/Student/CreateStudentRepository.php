@@ -21,7 +21,8 @@ use App\Models\Program\Program,
 class CreateStudentRepository extends BaseRepository
 {
     public function execute($request)
-    {
+    {       
+
         if ($request->role == "STUDENT") {
             $schoolYear = SchoolYear::where('status', 'OPEN')->first();
             $semester = Semester::where('enrollment_status', 'OPEN')->first();
@@ -56,8 +57,7 @@ class CreateStudentRepository extends BaseRepository
                 return $this->error("Conflict found!", $data);
             }
 
-            $student = Student::create([
-                "uId"               => $request->uId,
+            $studentData = [
                 "first_name"        => $request->firstName,
                 "middle_name"       => $request->middleName,
                 "last_name"         => $request->lastName,
@@ -68,7 +68,8 @@ class CreateStudentRepository extends BaseRepository
                 "program_id"        => $program->id,
                 "department_id"     => $department->id,
                 "branch_id"         => $branch->id,
-            ]);
+            ];
+            $student = Student::create($studentData);
 
             $studentSection = StudentSection::create([
                 "student_id"            => $student->id,
@@ -105,8 +106,16 @@ class CreateStudentRepository extends BaseRepository
                 
             }
 
+            // Serialize the array to a string
+            $serializedData = serialize($studentData);
 
+            // Hash the serialized string
+            $hashedData = hash('sha256', $serializedData);          
 
+            $dataCollection = [
+                'studentData'      => $studentData,
+                'hashedData'        => $hashedData
+            ];
             ActivityLog::create([
                 "student_id"    => $student->id,
                 "action"        => "CREATE",
@@ -119,6 +128,6 @@ class CreateStudentRepository extends BaseRepository
             return $this->error("Only student role can be created or student already registered.");
         }
 
-        return $this->success('Student account created successfully!', $student->id);
+        return $this->success('Student account created successfully!', $dataCollection);
     }
 }

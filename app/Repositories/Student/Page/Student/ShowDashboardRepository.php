@@ -29,7 +29,7 @@ class ShowDashboardRepository extends BaseRepository
                               ->where('school_year', $schoolYear->school_year)
                               ->where('semester', $semester->semester)
                               ->first();
-
+            
             $studentSubjectId = StudentSectionSubject::where('student_section_id', $studentSection->id)->pluck('id')->toArray();
 
             $data = [];

@@ -29,20 +29,20 @@ return new class extends Migration
 
 
         /*****************************************  EMPLOYEE  *****************************************/
-        Schema::table('employees', function (Blueprint $table)
-        {
-            $table->foreign('department_id')->references('id')->on('departments');
-            $table->foreign('branch_id')->references('id')->on('branches');
-        });
+        // Schema::table('employees', function (Blueprint $table)
+        // {
+        //     $table->foreign('department_id')->references('id')->on('departments');
+        //     $table->foreign('branch_id')->references('id')->on('branches');
+        // });
 
 
         /*****************************************  STUDENT  *****************************************/
-        Schema::table('students', function (Blueprint $table)
-        {
-            $table->foreign('program_id')->references('id')->on('programs');
-            $table->foreign('department_id')->references('id')->on('departments');
-            $table->foreign('branch_id')->references('id')->on('branches');
-        });
+        // Schema::table('students', function (Blueprint $table)
+        // {
+        //     $table->foreign('program_id')->references('id')->on('programs');
+        //     $table->foreign('department_id')->references('id')->on('departments');
+        //     $table->foreign('branch_id')->references('id')->on('branches');
+        // });
 
 
         /*****************************************  SECTION SUBJECT  *****************************************/
