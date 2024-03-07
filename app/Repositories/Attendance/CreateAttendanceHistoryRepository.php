@@ -39,7 +39,7 @@ class CreateAttendanceHistoryRepository extends BaseRepository
         $formattedTimeEnd = Carbon::parse($sectionSubjectDate->time_end)->format('H:i:s');
         $formattedDate = Carbon::parse($request->date)->format('Y-m-d');
         
-        $attendance = AttendanceHistory::where('student_id', $request->studentId)
+        $attendance = AttendanceHistory::where('student_id', $request->principal_id)
             ->where('section_subject_id', $sectionSubject->id)
             ->where('date', $formattedDate)
             ->where('time', '<=', $formattedTimeEnd)

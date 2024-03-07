@@ -57,7 +57,7 @@ class CreateStudentRepository extends BaseRepository
             }
 
         
-            $student = Student::create(['principal_id' => $request->studentId]);
+            $student = Student::create(['principal_id' => $request->principal_id]);
 
             $studentSection = StudentSection::create([
                 "student_id"            => $student->id,
