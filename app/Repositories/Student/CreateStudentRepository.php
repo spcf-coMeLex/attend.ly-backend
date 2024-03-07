@@ -22,7 +22,7 @@ class CreateStudentRepository extends BaseRepository
 {
     public function execute($request)
     {       
-
+        if($request->validated()){
             $schoolYear = SchoolYear::where('status', 'OPEN')->first();
             $semester = Semester::where('enrollment_status', 'OPEN')->first();
             $section = Section::where('code', $request->sectionCode)->first();
@@ -101,6 +101,7 @@ class CreateStudentRepository extends BaseRepository
                 "message"       => "SUCCESSFULLY CREATED AN STUDENT ACCOUNT"
             ]);
 
-        return $request->validated();
+        
+        }
     }
 }
