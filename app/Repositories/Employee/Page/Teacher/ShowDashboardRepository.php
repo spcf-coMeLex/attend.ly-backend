@@ -17,7 +17,7 @@ class ShowDashboardRepository extends BaseRepository
     public function execute($request)
     {
         $now = Carbon::now();
-        $employee = Employee::where('principal_id', $request->teacherInfo->principalId)->first();
+        $employee = Employee::where('principal_id', $request->teacherId)->first();
         if($employee != null){
             $employeeSubjectsId = SectionSubject::where('employee_id', $employee->id)->pluck('id')->toArray();
             

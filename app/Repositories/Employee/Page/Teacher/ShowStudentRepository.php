@@ -15,7 +15,7 @@ class ShowStudentRepository extends BaseRepository
     public function execute($request)
     {
         if($request->studentInfo){
-            $student = Student::where('principal_id]', $request->studentInfo->principal_id)->first();
+            $student = Student::where('principal_id', $request->studentId)->first();
             $studentAttendance = AttendanceHistory::where('student_id', $student->id)->get();
 
             $data = [

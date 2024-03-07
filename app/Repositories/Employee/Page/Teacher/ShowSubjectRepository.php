@@ -32,7 +32,7 @@ class ShowSubjectRepository extends BaseRepository
             ];
 
             foreach($studentSectionSubjects as $studentSectionSubject){
-                $student = Student::where('principal_id', $request->studentInfo->principalId)->first();
+                $student = Student::where('principal_id', $request->studentId)->first();
                 $attendance = AttendanceHistory::where('student_id', $student->id)
                                                  ->where('section_subject_id', $studentSectionSubject)->whereDate('date', $now)->first();
 
