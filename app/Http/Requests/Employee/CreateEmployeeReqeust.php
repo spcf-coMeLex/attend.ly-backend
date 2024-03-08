@@ -22,13 +22,13 @@ class CreateEmployeeReqeust extends FormRequest
     public function rules(): array
     {
         return [
+            'principalId' => 'required|string',
             'firstName' => 'required|string',
             'middleName' => 'nullable|string',
             'lastName' => 'required|string',
             'gender' => 'required|in:MALE,FEMALE,OTHER',
             'birthDate' => 'required|date',
             'address' => 'required|string',
-            'sectionCode' => 'required|string',
             'departmentCode' => 'required|string',
             'branchName' => 'required|string',
         ];

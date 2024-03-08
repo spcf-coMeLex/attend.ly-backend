@@ -45,9 +45,9 @@ class ShowSubjectRepository extends BaseRepository
                                 ]);
                 }
             }
-            
 
-            
+
+
 
             // foreach($sectionSubjects as $sectionSubject){
             //     $sectionSubjectDate = SectionSubjectDate::where('section_subject_id', $sectionSubject->id)->get();
@@ -60,9 +60,9 @@ class ShowSubjectRepository extends BaseRepository
             //             "sectionSubjectDate"    => $sectionSubjectDate
             //         ]);
             //     }
-                
+
             // }
-            
+
 
         return $this->success('Employee Subject Student List', $data ?? null);
     }

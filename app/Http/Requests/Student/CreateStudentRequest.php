@@ -22,6 +22,7 @@ class CreateStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'principalId' => 'required|string|unique:students,principal_id',
             'firstName' => 'required|string',
             'middleName' => 'nullable|string',
             'lastName' => 'required|string',

@@ -15,7 +15,9 @@ class CreateEmployeeRepository extends BaseRepository
 {
     public function execute($request)
     {
-        if($request->validated()){
+        $validated = $request->validated();
+
+        if($validated){
             $branch = Branch::where('name', $request->branchName)->first();
             $department = Department::where('code', $request->departmentCode)->first();
             $sectionId = Section::whereIn('code', ['CCIS3A', 'CCIS5A'])->pluck('id')->toArray();
@@ -75,8 +77,10 @@ class CreateEmployeeRepository extends BaseRepository
                     }
                 }
             }
+
+            return $validated;
         }
 
-
+        return $this->error("Something went wrong!");
     }
 }
